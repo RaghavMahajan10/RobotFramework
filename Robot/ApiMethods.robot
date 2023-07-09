@@ -11,6 +11,10 @@ Run Get Request
     ${ExpectedStatusCode}=      getResponseCode     ${DBConnection}     ${ActionName}
     
     Should Be Equal    ${ExpectedStatusCode}    ${Response.status_code}
+    ${json}=        Convert String To Json    ${Response.content}
+    extract value from response   ${DBConnection}     ${ActionName}      ${json}
+
+    releaseDbConnection     ${DBConnection}
 
 #Run Post Request
 #    [Arguments]

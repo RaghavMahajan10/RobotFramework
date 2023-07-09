@@ -1,3 +1,4 @@
+import json
 import sqlite3
 
 import pandas as pd
@@ -76,7 +77,7 @@ def getEjectVariable(db, actionName):
         sqlQuery = 'SELECT EjectVariable from Workflow WHERE ActionName =' + "'" + actionName + "'"
         cursor.execute(sqlQuery)
         for row in cursor:
-            return row[0]
+            return row[0].split(',')
     except:
         print("Error while fetching EjectVariable")
 
